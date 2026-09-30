@@ -3,8 +3,8 @@
   
   "compilerOptions": {
     // File Layout
-    // "rootDir": "./src",
-    // "outDir": "./dist",
+    "outDir": "./dist",
+    "rootDir": ".",
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
@@ -14,7 +14,7 @@
     "resolveJsonModule": true,
     "rewriteRelativeImportExtensions": true,
     "erasableSyntaxOnly": true,
-    "noEmit": true,
+    "noEmit": false,
     "types": [],
     // For nodejs:
     // "lib": ["esnext"],
@@ -40,7 +40,6 @@
 
     // Recommended Options
     "strict": true,
-    "jsx": "react-jsx",
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
