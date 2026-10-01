@@ -62,6 +62,23 @@ app.post('/api/tasks', async (req: Request, res: Response) => {
   });
 });
 
+app.put('/api/tasks/:id', async (req: Request, res: Response) => {
+    const id = req.params.id;
+    const task = req.body;
+
+    if (typeof id !== 'string') {
+        return res.status(400).json({
+            error: 'Invalid task ID'
+        });
+    }
+
+    const docRef = await db.collection('tasks').doc(id).update(task);
+
+    res.json({
+       success: true
+    });
+});
+
 app.patch('/api/tasks/:id', async (req: Request, res: Response) => {
     const id = req.params.id;
     const completedValue = req.body.completed;
@@ -80,7 +97,6 @@ app.patch('/api/tasks/:id', async (req: Request, res: Response) => {
        success: true
     });
 });
-
 app.delete('/api/tasks/:id', async (req: Request, res: Response) => {
    
     const id = req.params.id;
