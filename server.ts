@@ -30,6 +30,27 @@ app.get('/api/tasks', async (req: Request, res: Response) => {
   res.json(tasks);
 });
 
+app.get('/api/tasks/:id', async (req: Request, res: Response) => {
+  const id = req.params.id;
+  if (typeof id !== 'string') {
+        return res.status(400).json({
+            error: 'Invalid task ID'
+        });
+    }
+  const snapshot = await db.collection('tasks').doc(id).get();
+  
+  let task;
+  if(snapshot.exists){
+   task = snapshot.data();
+  } else {
+    return res.status(404).json({
+          error: 'task not found'
+      });
+  }
+
+  res.json(task);
+});
+
 app.post('/api/tasks', async (req: Request, res: Response) => {
   const task = req.body;
 
